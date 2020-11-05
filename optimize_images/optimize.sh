@@ -9,6 +9,9 @@ read -p "Quelle Qualite : entre 1 (compression maximale) et 100 (compression min
 quality=${quality:-86}
 read -p 'Flexible (yes/no) ? [no]' flexible
 flexible=${flexible:-no}
+read -p 'Compression enable (yes/no) ? [yes]' compression_enabled
+compression_enabled=${compression_enabled:-yes}
+
 
 #Slugify name of images
 sh ./slugify_images.sh
@@ -42,7 +45,12 @@ for X in *.jpg
 do
   name_of_output="./${width}x${height}/${width}x${height}-${X}"
   echo $name_of_output
-  magick convert "$X" -trim +repage -resize "$dimensions" -gravity center -background transparent $extent_options -quality $quality $name_of_output;
+  if [ $compression_enabled == "yes" ]
+  then
+    magick convert "$X" -trim +repage -resize "$dimensions" -gravity center -background transparent $extent_options -quality $quality $name_of_output;
+  else
+    magick convert "$X" -trim +repage -resize "$dimensions" -gravity center -background transparent $extent_options $name_of_output;
+  fi
 done
 
 #Extract png
@@ -50,7 +58,7 @@ for X in *.png
 do
   name_of_output="./${width}x${height}/${width}x${height}-${X}"
   echo $name_of_output
-  magick convert "$X" -trim +repage -resize "$dimensions" -gravity center -background transparent $extent_options -quality 100 $name_of_output;
+  magick convert "$X" -trim +repage -resize "$dimensions" -gravity center -background transparent $extent_options $name_of_output;
 done
 
 cd ..
