@@ -49,6 +49,7 @@ do
   then
     magick convert "$X" -trim +repage -resize "$dimensions" -gravity center -background transparent $extent_options -quality $quality $name_of_output;
   else
+    echo convert "$X" -trim +repage -resize "$dimensions" -gravity center -background transparent $extent_options $name_of_output;
     magick convert "$X" -trim +repage -resize "$dimensions" -gravity center -background transparent $extent_options $name_of_output;
   fi
 done

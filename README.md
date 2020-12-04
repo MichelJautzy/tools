@@ -1,5 +1,3 @@
-# tools
-
 #Installation sous windows : 
 ##Etape 1 : installer git
 - Aller sur https://git-scm.com/downloads
@@ -7,7 +5,6 @@
 - L'installer, en acceptant toutes les options par défaut
 
 ##Etape 2 Installer image magick
-
 - Aller sur https://imagemagick.org/script/download.php
 - Scroller la page vers le bas et choisir la première version proposé dans 'Windows Binary Release'. 
 - A présent, elle est proposée en téléchargement juste en dessous du texte : 'we recommend this version of ImageMagick for 64-bit Windows:'
